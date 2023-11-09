@@ -1,0 +1,15 @@
+defaults:
+  - _self_
+  - scraping : config.yaml
+
+path: src/scripts/hello_world.py
+logging:
+  console:
+    level: INFO
+  file:
+    level: DISABLED
+  cloud:
+    level: DISABLED
+  overrides:
+    - opentelemetry: INFO
+      

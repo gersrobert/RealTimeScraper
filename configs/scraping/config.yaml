@@ -1,0 +1,29 @@
+mock: True
+
+components:
+  - entity:
+      name: "Nasdaq API"
+    steps:
+      - action: watch
+        target:
+          type: url
+          value: "https://api.news.eu.nasdaq.com/news/query.action?type=json&showAttachments=true&showCnsSpecific=true&showCompany=true&countResults=false&globalGroup=exchangeNotice&globalName=NordicMainMarkets&language=en&timeZone=UTC&dateMask=yyyy-MM-dd'T'HH%3Amm%3AssZ&limit=1&dir=DESC"
+          elements: [ "results.item[0].disclosureId" ]
+        store:
+          document_url: "results.item[0].messageUrl"
+          id: "results.item[0].disclosureId"
+          title: "results.item[0].headline"
+          entity.name: "results.item[0].company"
+          timestamp: "results.item[0].releaseTime"
+      - action: open
+        target:
+          type: store
+          value: document_url
+        store:
+          body: '//*[@id="previewTable"]/tr[3]/td//*'
+      - action: return
+        store:
+          id: id
+          timestamp: timestamp
+          title: title
+          body: body

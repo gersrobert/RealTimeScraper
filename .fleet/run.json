@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "python",
+            "name": "Run scraper",
+            "file": "run.py",
+            "arguments": ["path=src/scripts/run_scraper"],
+        },
+        
+    ]
+}
